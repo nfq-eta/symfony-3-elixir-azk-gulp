@@ -26,7 +26,8 @@
 /web/silvestra_media/
 /web/node_files/
 /web/sitemap/
-.idea
 .vagrant
 cache.properties
 phpstorm-code-style-settings.jar
+/.sass-cache
+/.idea
