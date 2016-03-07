@@ -29,5 +29,6 @@
 .vagrant
 cache.properties
 phpstorm-code-style-settings.jar
+/web
 /.sass-cache
 /.idea
