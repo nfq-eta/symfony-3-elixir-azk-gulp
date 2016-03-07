@@ -1,7 +1,7 @@
 /bower_components
 /web/js
 /web/fonts
-.idea/
+/.idea
 ._*
 .DS_Store
 .vagrant
@@ -13,15 +13,15 @@
 /app/config/parameters.yml
 /app/logs/*
 /build/
-/vendor/
+/vendor
 /bin/
 /composer.phar
 
 # Yeoman
-node_modules
+/node_modules
 .tmp
-.sass-cache
 web/libs
 web/dist
 web/css
 app/dist
+/.sass-cache
