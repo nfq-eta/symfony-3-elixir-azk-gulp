@@ -1,0 +1,5 @@
+/.azk
+/node_modules
+/app/bootstrap.php.cache
+/app/cache/*
+/app/logs/*
