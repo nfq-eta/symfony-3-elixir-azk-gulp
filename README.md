@@ -11,3 +11,7 @@ TO test the gulp
 1. Connect to default container
 
     ```azk shell```
+
+1. To display the status of containers
+
+    ```azk status```

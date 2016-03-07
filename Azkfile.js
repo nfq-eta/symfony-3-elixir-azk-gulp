@@ -7,17 +7,15 @@ systems({
         },
         provision: [
             "npm install",
-            "composer update",
             "composer install",
-            'php bin/console security:check',
-            'gulp'
+            "gulp"
         ],
         workdir: "/var/www/html",
         shell: "/bin/bash",
         wait: 20,
         mounts: {
             '/var/www/html': sync("."),
-            '/var/www/html/vendor': persistent("./vendor"),
+            '/var/www/html/vendor': path("./vendor"),
             '/var/www/html/composer.phar': persistent("./composer.phar"),
             '/var/www/html/composer.lock': path("./composer.lock"),
             '/var/www/html/app/bootstrap.php.cache': path("./app/bootstrap.php.cache"),
@@ -42,7 +40,7 @@ systems({
         shell: "/bin/bash",
         wait: 25,
         mounts: {
-            '/var/lib/mysql': persistent("mysql_data"),
+            '/var/lib/mysql': persistent("./mysql_data"),
             // to clean mysql data, run:
             // $ azk shell mysql -c "rm -rf /var/lib/mysql/*"
         },
@@ -64,20 +62,7 @@ systems({
             MYSQL_PORT: "#{net.port.data}",
             MYSQL_DATABASE: "#{envs.MYSQL_DATABASE}"
         }
-    },
-    "phpmyadmin": {
-        depends: ["mysql"],
-        image: {docker: "reduto/phpmyadmin"},
-        wait: {retry: 20, timeout: 1000},
-        scalable: {default: 0, limit: 1},
-        http: {
-            domains: ["#{system.name}.#{azk.default_domain}"]
-        },
-        ports: {
-            http: "80/tcp"
-        }
     }
-
 });
 
 // Sets a default system (to use: start, stop, status, scale)

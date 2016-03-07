@@ -13,7 +13,7 @@
 /app/logs/*
 !app/logs/.gitkeep
 /app/phpunit.xml
-/bin/
+/var
 /composer.phar
 /docker/data
 /vendor/
