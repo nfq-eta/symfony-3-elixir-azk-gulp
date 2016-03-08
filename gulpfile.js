@@ -1,5 +1,4 @@
 var elixir = require('laravel-elixir');
-
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -12,5 +11,9 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.sass('app.scss');
+    mix.sass('app.scss')
+        .browserSync({
+            proxy: 'mydomain.dev'
+        })
+        .browserify('app.js');
 });
