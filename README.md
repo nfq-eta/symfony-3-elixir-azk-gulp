@@ -7,27 +7,25 @@ AZK
 1. Run azk
 
     ```azk start -o -vv```
-
 1. Connect to default container
 
     ```azk shell```
-
 1. To display the status of containers
 
     ```azk status```
     
 GULP
-----
+-------
 1. Tu run all development tasks
 
-    ```gulp```
+    `gulp`
 1. To run the js, scss files watcher
 
-    ```gulp watch```
+    `gulp watch`
     
 1. To run the PHP tests
     
-    ```gulp tdd```
+    `gulp tdd`
 
 Advanced
 --------
