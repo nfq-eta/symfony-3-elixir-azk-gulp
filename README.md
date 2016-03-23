@@ -32,6 +32,7 @@ GULP
 Advanced
 --------
 To serve the compressed production files need some addition helper
+
 ```php
 if (! function_exists('elixir')) {
     /**
