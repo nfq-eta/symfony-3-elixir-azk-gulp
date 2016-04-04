@@ -2,7 +2,7 @@
   "assetsPath": "resources/assets",
   "publicPath": "web",
   "appPath": "app",
-  "viewPath": "Resources/views",
+  "viewPath": "app/Resources/views",
   "batchOptions": {
     "timeout": 1000
   },
@@ -97,8 +97,9 @@
     "buildFolder": "public"
   },
   "browserSync": {
-    "proxy": "homestead.app",
+    "proxy": "localhost",
     "reloadOnRestart": true,
-    "notify": true
+    "notify": true,
+    "open": "external"
   }
 }

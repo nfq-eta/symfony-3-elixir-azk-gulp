@@ -5,15 +5,18 @@ var elixir = require('laravel-elixir');
  |--------------------------------------------------------------------------
  |
  | Elixir provides a clean, fluent API for defining some basic Gulp tasks
- | for your Laravel application. By default, we are compiling the Sass
+ | for your application. By default, we are compiling the Sass
  | file for our application, as well as publishing vendor resources.
  |
  */
 
-elixir(function(mix) {
-    mix.sass('app.scss')
-        .browserSync({
-            proxy: 'mydomain.dev'
-        })
-        .browserify('app.js');
+elixir(function (mix) {
+    mix
+        .sass('app.scss')
+
+        // Copy bootstrap fonts
+        .copy('node_modules/bootstrap-sass/assets/fonts', 'web/fonts')
+        .browserify('app.js')
+        .browserSync();
+    // elixir.config.production;
 });

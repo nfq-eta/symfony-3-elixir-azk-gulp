@@ -26,6 +26,9 @@ GULP
 1. To run the PHP tests
     
     `gulp tdd`
+1. Run all tasks and minify all CSS and JavaScript...
+   
+   `gulp --production`
 
 Advanced
 --------

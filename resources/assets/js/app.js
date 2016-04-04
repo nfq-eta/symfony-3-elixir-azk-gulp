@@ -1,18 +1,17 @@
-var Vue = require('vue');
 window.$ = window.jQuery = require('jquery');
+var Vue = require('vue');
 require('bootstrap-sass');
 
 Vue.config.delimiters = ['${', '}'];
 
 new Vue({
-    el: '#demo',
+    el: 'body',
     data: {
         items: [
-            { message: 'Foo' },
-            { message: 'Bar' }
+            {message: 'Foo'},
+            {message: 'Bar'}
         ],
-        value: 'This is input text',
-
+        value: 'This is input text'
     },
     methods: {
         greet: function (event, param) {
