@@ -5,6 +5,8 @@ var elixir = require('laravel-elixir'),
     iconfontCss = require('gulp-iconfont-css'),
     runTimestamp = Math.round(Date.now()/1000),
     fontName = 'icons';
+
+require('laravel-elixir-livereload');
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -19,7 +21,7 @@ var elixir = require('laravel-elixir'),
 elixir.extend('fonts', function(src, output) {
 
     new Task('fonts', function() {
-        gulp.src(src)
+        return gulp.src(src)
             .pipe(iconfontCss({
                 fontName: fontName,
                 // path: elixir.config.assetsPath + '/' + elixir.config.css.sass.folder + '/_' + fontName + '.scss',
@@ -33,7 +35,7 @@ elixir.extend('fonts', function(src, output) {
                 timestamp: runTimestamp // recommended to get consistent builds when watching files
             }))
             .pipe(gulp.dest(output));
-    });
+    }).watch(src);
 
 });
 
@@ -46,5 +48,7 @@ elixir(function (mix) {
         // Process css
         .sass('app.scss')
         .browserify('app.js')
-        .browserSync();
+        .browserSync()
+            .livereload()
+    ;
 });
