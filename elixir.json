@@ -76,7 +76,7 @@
         }
       ],
       "watchify": {
-        "enabled": true,
+        "enabled": false,
         "options": {}
       }
     },

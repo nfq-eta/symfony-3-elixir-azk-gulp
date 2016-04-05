@@ -1,7 +1,14 @@
 var elixir = require('laravel-elixir'),
     gulp = require('gulp'),
     Task = elixir.Task,
-    fontcustom = require('gulp-fontcustom');
+    iconfont = require('gulp-iconfont'),
+    iconfontCss = require('gulp-iconfont-css'),
+    runTimestamp = Math.round(Date.now()/1000),
+    fontName = 'icons';
+
+// Plugins
+require('laravel-elixir-livereload');
+require('laravel-elixir-spritesmith');
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -15,27 +22,40 @@ var elixir = require('laravel-elixir'),
 
 elixir.extend('fonts', function(src, output) {
 
-    console.log(src, output);
     new Task('fonts', function() {
         return gulp.src(src)
-            .pipe(
-                fontcustom({
-                    font_name: 'icons',  // defaults to 'fontcustom',
-                    'css-selector': '.icon-{{glyph}}'
-                })
-            )
+            .pipe(iconfontCss({
+                fontName: fontName,
+                // path: elixir.config.assetsPath + '/' + elixir.config.css.sass.folder + '/_' + fontName + '.scss',
+                targetPath: '../css/' + fontName + '.css',
+                fontPath: '../fonts/'
+            }))
+            .pipe(iconfont({
+                normalize: true,
+                fontName: fontName, // required
+                prependUnicode: false, // recommended option
+                formats: ['ttf', 'eot', 'woff', 'woff2', 'svg'], // default, 'woff2' and 'svg' are available
+                timestamp: runTimestamp // recommended to get consistent builds when watching files
+            }))
             .pipe(gulp.dest(output));
-    });
+    }).watch(src);
 
 });
 
 elixir(function (mix) {
     mix
-        .sass('app.scss')
-
         // Copy bootstrap fonts
         .copy('node_modules/bootstrap-sass/assets/fonts', 'web/fonts')
-        .fonts(elixir.config.assetsPath + '/svg/**/*.svg', elixir.config.publicPath + '/assets/fonts/')
+        // Generate custom fonts
+        .fonts([elixir.config.assetsPath + '/svg/**/*.svg'], elixir.config.publicPath + '/fonts/')
+        // Process css
+        .sass('app.scss')
         .browserify('app.js')
-        .browserSync();
+        .spritesmith(null, {
+            imgOutput: elixir.config.publicPath + '/img',
+            cssOutput: elixir.config.assetsPath + '/' + elixir.config.css.sass.folder,
+            cssName: '_sprite.scss'
+        })
+        .browserSync()
+            .livereload();
 });
