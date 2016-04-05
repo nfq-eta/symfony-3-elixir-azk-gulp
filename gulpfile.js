@@ -6,7 +6,9 @@ var elixir = require('laravel-elixir'),
     runTimestamp = Math.round(Date.now()/1000),
     fontName = 'icons';
 
+// Plugins
 require('laravel-elixir-livereload');
+require('laravel-elixir-spritesmith');
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -29,6 +31,7 @@ elixir.extend('fonts', function(src, output) {
                 fontPath: '../fonts/'
             }))
             .pipe(iconfont({
+                normalize: true,
                 fontName: fontName, // required
                 prependUnicode: false, // recommended option
                 formats: ['ttf', 'eot', 'woff', 'woff2', 'svg'], // default, 'woff2' and 'svg' are available
@@ -48,7 +51,11 @@ elixir(function (mix) {
         // Process css
         .sass('app.scss')
         .browserify('app.js')
+        .spritesmith(null, {
+            imgOutput: elixir.config.publicPath + '/img',
+            cssOutput: elixir.config.assetsPath + '/' + elixir.config.css.sass.folder,
+            cssName: '_sprite.scss'
+        })
         .browserSync()
-            .livereload()
-    ;
+            .livereload();
 });
