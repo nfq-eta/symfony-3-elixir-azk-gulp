@@ -1,12 +1,7 @@
-var elixir = require('laravel-elixir'),
-    gulp = require('gulp'),
-    Task = elixir.Task,
-    iconfont = require('gulp-iconfont'),
-    iconfontCss = require('gulp-iconfont-css'),
-    runTimestamp = Math.round(Date.now()/1000),
-    fontName = 'icons';
+var elixir = require('laravel-elixir');
 
 // Plugins
+require('laravel-elixir-fonts');
 require('laravel-elixir-livereload');
 require('laravel-elixir-spritesmith');
 /*
@@ -19,28 +14,6 @@ require('laravel-elixir-spritesmith');
  | file for our application, as well as publishing vendor resources.
  |
  */
-
-elixir.extend('fonts', function(src, output) {
-
-    new Task('fonts', function() {
-        return gulp.src(src)
-            .pipe(iconfontCss({
-                fontName: fontName,
-                // path: elixir.config.assetsPath + '/' + elixir.config.css.sass.folder + '/_' + fontName + '.scss',
-                targetPath: '../css/' + fontName + '.css',
-                fontPath: '../fonts/'
-            }))
-            .pipe(iconfont({
-                normalize: true,
-                fontName: fontName, // required
-                prependUnicode: false, // recommended option
-                formats: ['ttf', 'eot', 'woff', 'woff2', 'svg'], // default, 'woff2' and 'svg' are available
-                timestamp: runTimestamp // recommended to get consistent builds when watching files
-            }))
-            .pipe(gulp.dest(output));
-    }).watch(src);
-
-});
 
 elixir(function (mix) {
     mix
