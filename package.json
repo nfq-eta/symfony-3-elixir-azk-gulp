@@ -4,6 +4,7 @@
     "gulp": "^3.9.0",
     "gulp-iconfont": "^6.0.0",
     "gulp-iconfont-css": "^2.1.0",
+    "laravel-elixir-fonts": "0.0.1",
     "laravel-elixir-livereload": "^1.1.4",
     "laravel-elixir-spritesmith": "^0.3.2"
   },
