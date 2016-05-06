@@ -1,0 +1,30 @@
+@font-face {
+	font-family: "_icon_font";
+	src: url('../fonts/_icon_font.eot');
+	src: url('../fonts/_icon_font.eot?#iefix') format('eot'),
+		url('../fonts/_icon_font.woff2') format('woff2'),
+		url('../fonts/_icon_font.woff') format('woff'),
+		url('../fonts/_icon_font.ttf') format('truetype'),
+		url('../fonts/_icon_font.svg#_icon_font') format('svg');
+}
+
+.icon:before {
+	font-family: "_icon_font";
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	/* speak: none; only necessary if not using the private unicode range (firstGlyph option) */
+	text-decoration: none;
+	text-transform: none;
+}
+
+
+.icon-book:before {
+	content: "\E001";
+}
+
+.icon-logo:before {
+	content: "\E002";
+}

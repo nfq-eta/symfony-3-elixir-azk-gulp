@@ -6,6 +6,14 @@
   "batchOptions": {
     "timeout": 1000
   },
+  "images": {
+    "folder": "img",
+    "outputFolder": "img"
+  },
+  "fonts": {
+    "folder": "fonts",
+    "outputFolder": "fonts"
+  },
   "css": {
     "folder": "css",
     "outputFolder": "css",
@@ -13,7 +21,9 @@
       "enabled": true,
       "options": {
         "browsers": [
-          "last 2 versions"
+          "last 2 versions",
+          "ie 9",
+          "android >= 4.2"
         ],
         "cascade": false
       }
@@ -41,8 +51,7 @@
     "babel": {
       "options": {
         "presets": [
-          "es2015",
-          "react"
+          "es2015"
         ]
       }
     },
@@ -83,6 +92,28 @@
     "coffee": {
       "folder": "coffee",
       "options": {}
+    }
+  },
+  "svgSprite": {
+    "shape": {
+      "dimension": {
+        "maxWidth": 64,
+        "maxHeight": 64
+      },
+      "dest": "./"
+    },
+    "mode": {
+      "css": {
+        "layout": "vertical",
+        "sprite": "../../img/svg_sprite.svg",
+        "render": {
+          "css": true,
+          "scss": {
+            "dest": "../../../resources/assets/sass/_svg_sprite.scss"
+          }
+        },
+        "example": true
+      }
     }
   },
   "testing": {

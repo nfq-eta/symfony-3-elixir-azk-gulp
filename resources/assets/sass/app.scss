@@ -2,6 +2,8 @@
 $font-family-sans-serif: 'Lato', sans-serif;
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "sprite";
+@import "svg_sprite";
+@import "icon_font";
 
 @include sprites($spritesheet-sprites);
 

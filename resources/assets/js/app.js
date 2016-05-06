@@ -16,9 +16,8 @@ new Vue({
     methods: {
         greet: function (event, param) {
             // `this` inside methods point to the Vue instance
-            console.log('Hello ' + event + '!');
-            // `event` is the native DOM event
-            console.log(event.target.tagName);
+            console.log({ event: event, param: param });
+            alert('Works check the console');
         }
     }
 });

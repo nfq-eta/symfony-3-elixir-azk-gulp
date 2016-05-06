@@ -1,17 +1,24 @@
 {
   "private": true,
   "devDependencies": {
+    "del": "^2.2.0",
     "gulp": "^3.9.0",
-    "gulp-iconfont": "^6.0.0",
-    "gulp-iconfont-css": "^2.1.0",
-    "laravel-elixir-fonts": "0.0.1",
+    "laravel-elixir": "^5.0.0",
+    "laravel-elixir-del": "^0.1.1",
+    "laravel-elixir-fonts": "^0.1.0",
+    "laravel-elixir-imagemin": "^0.2.3",
     "laravel-elixir-livereload": "^1.1.4",
-    "laravel-elixir-spritesmith": "^0.3.2"
+    "laravel-elixir-spritesmith": "^0.3.2",
+    "laravel-elixir-svg-symbols": "^1.0.1"
   },
   "dependencies": {
     "bootstrap-sass": "^3.0.0",
     "jquery": "^2.2.1",
     "laravel-elixir": "^4.0.0",
     "vue": "^1.0.17"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "gulp && gulp watch"
   }
 }
