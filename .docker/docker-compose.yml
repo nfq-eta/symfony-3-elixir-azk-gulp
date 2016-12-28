@@ -1,0 +1,38 @@
+web:
+    container_name: ${SERVER_NAME}
+    build: .
+    volumes:
+        - ./../:/var/www/html
+    environment:
+        DOMAIN_NAME: ${SERVER_NAME}.dev
+        SYMFONY_ENV: dev
+        DOCKER_UID: ${DOCKER_UID}
+        XDEBUG_CONFIG: ${XDEBUG_CONFIG}
+        PHP_IDE_CONFIG: ${PHP_IDE_CONFIG}
+        GITHUB_OAUTH: ${GITHUB_OAUTH}
+    ports:
+        - 80:80
+    links:
+        - db
+
+db:
+    container_name: ${SERVER_NAME}_db
+    image: mariadb:10.1
+    user: ${DOCKER_UID}
+    environment:
+        DOMAIN_NAME: ${SERVER_NAME}-db.dev
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    volumes:
+        - ./data:/var/lib/mysql
+        - ./../:/var/www/html
+
+mail:
+    container_name: ${SERVER_NAME}_mail
+    image: helder/mailcatcher
+    environment:
+        DOMAIN_NAME: ${SERVER_NAME}-mail.dev
+

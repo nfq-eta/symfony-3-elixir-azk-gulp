@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+
+if [ ! -f "./.docker/docker-compose.yml" ]; then
+    echo "$(tput setaf 1)Docker composer file not found, exiting...$(tput sgr0)"
+    exit 1
+fi
+
+CONTAINER="$(cat ./.docker/docker-compose.yml | grep -m 1 container_name: | cut -f2 -d":" | xargs)"
+
+if [ "$CONTAINER" == "\${SERVER_NAME}" ]
+then
+    CONTAINER="$(cat .env | grep -m 1 SERVER_NAME= | cut -f2 -d"=" | xargs)"
+fi
+
+usage() {
+    printf "
+$(tput setaf 7)Usage:$(tput sgr0)
+$(tput setaf 2)$0 [command] [args]$(tput sgr0)
+$(tput setaf 7)Commands:$(tput setaf 2)
+- build $(tput setaf 7)     Build a docker containers$(tput setaf 2)
+- up $(tput setaf 7)        Start docker containers$(tput setaf 2)
+- ssh $(tput setaf 7)       Connect to main docker container$(tput setaf 2)
+- ssh [name]$(tput setaf 7) Connect to named docker container$(tput setaf 2)
+- xdebug $(tput setaf 7)    Enable XDebug$(tput setaf 2)
+- stop $(tput setaf 7)      Stop docker containers$(tput setaf 2)
+- destroy $(tput setaf 7)   Destroy and remove docker containers$(tput sgr0)
+" 1>&2; exit 1;
+}
+
+up() {
+    docker-compose -f ./.docker/docker-compose.yml up -d
+}
+
+stop() {
+    docker-compose -f ./.docker/docker-compose.yml stop
+}
+
+ssh() {
+    if [[ ! -z "$1" ]]
+    then
+        CONTAINER=$1
+    fi
+
+    docker exec -u www-data -it ${CONTAINER} bash
+    if [ "$?" -ne "0" ]
+    then
+        up && ssh ${CONTAINER}
+    fi
+}
+
+destroy() {
+    docker-compose -f ./.docker/docker-compose.yml stop
+    docker-compose -f ./.docker/docker-compose.yml down --rmi all -v --remove-orphans
+}
+
+build() {
+    destroy
+    docker-compose -f ./.docker/docker-compose.yml build
+    up
+}
+
+xdebug() {
+    OUTPUT=$(docker exec -u root $CONTAINER /usr/local/bin/docker-php-ext-enable xdebug 2>&1)
+    if [ "$OUTPUT" != "" ]; then
+        echo "$(tput setaf 5)Disabling XDebug...$(tput sgr0)";
+        docker exec -u root ${CONTAINER} rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+    else
+        echo "$(tput setaf 4)Enabling XDebug...$(tput sgr0)"
+    fi
+    # restart whole container to reload apache php module
+    docker restart ${CONTAINER} > /dev/null
+    echo "$(tput setaf 2)Done!$(tput sgr0)"
+}
+
+case $1 in
+   "up") up;;
+   "stop") stop;;
+   "build") build;;
+   "destroy") destroy;;
+   "ssh") ssh $2 ;;
+   "xdebug") xdebug;;
+   *) usage ;;
+esac
