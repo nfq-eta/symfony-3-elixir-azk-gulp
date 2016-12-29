@@ -1,12 +1,12 @@
 module.exports = new function () {
-  var config = {
+  const config = {
     base: {
-      input: './resources/public/',
-      output: './web/public/',
+      input: './resources/assets/',
+      output: './web/',
       tmp: './.tmp'
     },
     scss: {
-      input: 'scss/**/*.scss',
+      input: 'scss/*.scss',
       output: 'styles',
       structure: true //.pipe(rename({dirname: ''}))
     },
@@ -16,16 +16,21 @@ module.exports = new function () {
       structure: true
     },
     images: {
-      input: 'images/**/*.{png,jpeg,jpg,gif,svg}',  //Unsupported files are ignored.
+      input: 'img/**/*.{png,jpeg,jpg,gif,svg}',  //Unsupported files are ignored.
       output: 'images'
     },
     fonts: {
-      input: '**/*.{eot,svg,ttf,woff,woff2}',
+      input: 'fonts/**/*.{eot,svg,ttf,woff,woff2}',
+      output: 'fonts'
+    },
+    icons: {
+      name: 'icon_font',
+      input: 'icons/**/*.svg',
       output: 'fonts'
     },
     assets: {
       input: './src/Nfq/Bundle/OgminaBundle/Resources/views/layout.html.twig',
-      output: './src/Nfq/Bundle/OgminaBundle/Resources/views',
+      output: './src/Nfq/Bundle/OgminaBundle/Resources',
       compress: false
     },
 
@@ -63,7 +68,7 @@ module.exports = new function () {
       server: {
         baseDir: 'test',
         routes: {
-          '/scripts': '.tmp/scripts',
+          '/scripts': '/web/scripts',
           '/bower_components': 'bower_components'
         }
       }
@@ -79,6 +84,9 @@ module.exports = new function () {
 
   config.fonts.input = config.base.input + config.fonts.input;
   config.fonts.output = config.base.output + config.fonts.output;
+
+  config.icons.input = config.base.input + config.icons.input;
+  config.icons.output = config.base.input + config.icons.output;
 
   config.images.input = config.base.input + config.images.input;
   config.images.output = config.base.output + config.images.output;

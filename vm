@@ -29,6 +29,7 @@ $(tput setaf 7)Commands:$(tput setaf 2)
 
 up() {
     docker-compose -f ./.docker/docker-compose.yml up -d
+    echo "Open your browser http://${CONTAINER}.dev"
 }
 
 stop() {

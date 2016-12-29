@@ -4,5 +4,7 @@
 1. Run `$ ./vm ssh`
 1. SSH to the server `$ ./vm ssh`
 1. Run `$ yarn`
-1. Run `$ bower install`
-1. Run `$ gulp`
+
+#### Other frontend commands
+1. `$ npm run build` Build assets
+1. `$ npm start` Build and serve assets

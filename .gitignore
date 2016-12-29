@@ -7,3 +7,5 @@ bower_components
 test/bower_components
 /.env
 /.docker/data
+*.log
+/.fontcustom-manifest.json

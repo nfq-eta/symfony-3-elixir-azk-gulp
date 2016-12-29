@@ -23,6 +23,12 @@ RUN apt-get update && \
     ant \
     sudo \
     libxml2-dev \
+    nodejs \
+    yarn \
+    fontforge \
+    rubygems \
+    ruby-dev \
+    eot-utils \
     unzip \
     nano \
     vim \
@@ -35,6 +41,8 @@ RUN apt-get update && \
 
 RUN pecl install imagick xdebug && \
     docker-php-ext-enable imagick
+
+RUN gem install --no-ri --no-rdoc fontcustom
 
 COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 COPY php.ini /usr/local/etc/php/php.ini
