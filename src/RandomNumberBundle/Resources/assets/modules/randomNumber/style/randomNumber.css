@@ -1,0 +1,6 @@
+.random-loaded {
+    display: block;
+}
+.random-not-loaded {
+    display: none;
+}

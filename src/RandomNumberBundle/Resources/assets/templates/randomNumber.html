@@ -1,0 +1,5 @@
+<div>
+    <label>Max: <input class="form-control" type="number" data-ng-init="max = 10" data-ng-model="max"/></label>
+    <div><button class="btn btn-primary" data-ng-click="result = vm.generate(max)">Generate</button></div>
+    <div><span class="badge" data-ng-bind="result ? result : '?'"></span></div>
+</div>

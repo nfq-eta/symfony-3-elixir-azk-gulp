@@ -1,0 +1,6 @@
+.todo-loaded {
+    display: block;
+}
+.todo-not-loaded {
+    display: none;
+}

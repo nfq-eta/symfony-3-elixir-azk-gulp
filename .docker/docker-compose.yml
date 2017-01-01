@@ -5,7 +5,7 @@ web:
         - ./../:/var/www/html
     environment:
         DOMAIN_NAME: ${SERVER_NAME}.dev
-        SYMFONY_ENV: dev
+        SYMFONY_ENV: ${SYMFONY_ENV}
         DOCKER_UID: ${DOCKER_UID}
         XDEBUG_CONFIG: ${XDEBUG_CONFIG}
         PHP_IDE_CONFIG: ${PHP_IDE_CONFIG}
