@@ -1,0 +1,35 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.10.2
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:debug:20170905':
+    - laravel-elixir > browser-sync > connect > debug:
+        patched: '2018-03-14T14:36:09.941Z'
+    - laravel-elixir > browser-sync > serve-index > debug:
+        patched: '2018-03-14T14:36:09.941Z'
+    - laravel-elixir > browser-sync > localtunnel > debug:
+        patched: '2018-03-14T14:36:09.941Z'
+    - laravel-elixir > browser-sync > serve-static > send > debug:
+        patched: '2018-03-14T14:36:09.941Z'
+    - laravel-elixir > browser-sync > connect > finalhandler > debug:
+        patched: '2018-03-14T14:36:09.941Z'
+  'npm:minimatch:20160620':
+    - laravel-elixir > browserify > glob > minimatch:
+        patched: '2018-03-14T14:36:09.941Z'
+    - laravel-elixir > gulp-if > gulp-match > minimatch:
+        patched: '2018-03-14T14:36:09.941Z'
+  'npm:ms:20170412':
+    - laravel-elixir > browser-sync > connect > debug > ms:
+        patched: '2018-03-14T14:36:09.941Z'
+    - laravel-elixir > browser-sync > connect > finalhandler > debug > ms:
+        patched: '2018-03-14T14:36:09.941Z'
+    - laravel-elixir > browser-sync > serve-index > debug > ms:
+        patched: '2018-03-14T14:36:09.941Z'
+    - laravel-elixir > browser-sync > serve-static > send > ms:
+        patched: '2018-03-14T14:36:09.941Z'
+    - laravel-elixir > browser-sync > serve-static > send > debug > ms:
+        patched: '2018-03-14T14:36:09.941Z'
+  'npm:qs:20170213':
+    - laravel-elixir > browser-sync > qs:
+        patched: '2018-03-14T14:36:09.941Z'
