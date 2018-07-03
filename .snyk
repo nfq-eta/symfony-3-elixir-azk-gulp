@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.10.2
+version: v1.12.0
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
@@ -33,3 +33,6 @@ patch:
   'npm:qs:20170213':
     - laravel-elixir > browser-sync > qs:
         patched: '2018-03-14T14:36:09.941Z'
+  'npm:lodash:20180130':
+    - laravel-elixir > browser-sync > easy-extender > lodash:
+        patched: '2018-07-03T05:02:53.906Z'
