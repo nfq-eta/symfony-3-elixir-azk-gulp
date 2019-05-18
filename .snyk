@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.13.1
+version: v1.13.3
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
@@ -45,3 +45,6 @@ patch:
         patched: '2018-11-21T05:22:07.248Z'
     - laravel-elixir > gulp-less > less > request > hawk > cryptiles > boom > hoek:
         patched: '2018-11-21T05:22:07.248Z'
+  SNYK-JS-AXIOS-174505:
+    - laravel-elixir > browser-sync > localtunnel > axios:
+        patched: '2019-05-18T00:38:14.303Z'
